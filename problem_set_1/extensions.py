@@ -1,5 +1,4 @@
 def main():
-    # Prompt user and sanitize input
     file_name = input("File name: ").strip().lower()
 
     mappings = {
