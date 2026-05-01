@@ -6,3 +6,5 @@
 # ValueError --  Unlike a generic error, ValueError tells you exactly why the code failed
 # except -- Defines how to respond if a specific error occurs. Using except ValueError: specifically catches only that error type.
 # [Note: use try to "wrap" a risky operation and except ValueError to catch that specific problem.]
+
+# while loop with try/except -- Use  to repeatedly prompt a user for input until they provide a valid value
