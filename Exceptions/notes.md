@@ -4,4 +4,5 @@
 # ValueError -- specific type of exception raised when a function receives an argument of the correct data type but an inappropriate value
 # ValueError -- It occurs when an operation is mathematically impossible with the given value, like finding the square root of a negative number.
 # ValueError --  Unlike a generic error, ValueError tells you exactly why the code failed
+# except -- Defines how to respond if a specific error occurs. Using except ValueError: specifically catches only that error type.
 # [Note: use try to "wrap" a risky operation and except ValueError to catch that specific problem.]
