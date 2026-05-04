@@ -1,23 +1,16 @@
 class Solution:
     def reverse(self, x: int) -> int:
-        INT_MAX = 2**31 - 1
-        INT_MIN = -(2**31)
+        MIN = -2**31
+        MAX = 2**31 - 1
 
-        rev = 0
+        sign = 1 if x >= 0 else -1
+        x = abs(x)
 
-        while x != 0:
-            digit = int(x % 10)
+        rev = int(str(x)[::-1])
+        rev *= sign
 
-            # handle negative numbers properly in Python
-            if x < 0 and digit > 0:
-                digit -= 10
-
-            # overflow check
-            if rev > INT_MAX // 10 or rev < INT_MIN // 10:
-                return 0
-
-            rev = rev * 10 + digit
-            x = int(x / 10)
+        if rev < MIN or rev > MAX:
+            return 0
 
         return rev
 
@@ -31,7 +24,9 @@ if __name__ == "__main__":
         (-123, -321),
         (120, 21),
         (0, 0),
-        (1534236469, 0),  # overflow case
+        (1534236469, 0),     # overflow
+        (-1563847412, 0),    # tricky failing case you saw
+        (1463847412, 2147483641),
     ]
 
     for x, expected in test_cases:
