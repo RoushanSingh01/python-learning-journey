@@ -5,7 +5,7 @@ class Solution:
 
         rows = [""] * numRows
         current_row = 0
-        direction = 1  # 1 = down, -1 = up
+        direction = 1
 
         for char in s:
             rows[current_row] += char
@@ -18,7 +18,6 @@ class Solution:
             current_row += direction
 
         return "".join(rows)
-
 
 # ---------------- TEST CASES ----------------
 if __name__ == "__main__":
