@@ -1,33 +1,41 @@
 class Solution:
     def fourSum(self, nums, target):
-        res, res_set = [], set()
         nums.sort()
+        result = []
 
-        for i in range(len(nums) - 1):
+        n = len(nums)
+
+        for i in range(n - 3):
             if i > 0 and nums[i] == nums[i - 1]:
                 continue
 
-            for j in range(i + 1, len(nums)):
-                l, r = j + 1, len(nums) - 1
+            for j in range(i + 1, n - 2):
+                if j > i + 1 and nums[j] == nums[j - 1]:
+                    continue
 
-                while l < r:
-                    sm = nums[i] + nums[j] + nums[l] + nums[r]
+                left = j + 1
+                right = n - 1
 
-                    if sm < target:
-                        l += 1
-                    elif sm > target:
-                        r -= 1
-                    elif (nums[i], nums[j], nums[l], nums[r]) not in res_set:
-                        quad = (nums[i], nums[j], nums[l], nums[r])
-                        res.append(list(quad))
-                        res_set.add(quad)
-                        l += 1
-                        r -= 1
+                while left < right:
+                    total = nums[i] + nums[j] + nums[left] + nums[right]
+
+                    if total < target:
+                        left += 1
+                    elif total > target:
+                        right -= 1
                     else:
-                        l += 1
-                        r -= 1
+                        result.append([nums[i], nums[j], nums[left], nums[right]])
 
-        return res
+                        left += 1
+                        right -= 1
+
+                        # skip duplicates
+                        while left < right and nums[left] == nums[left - 1]:
+                            left += 1
+                        while left < right and nums[right] == nums[right + 1]:
+                            right -= 1
+
+        return result
 
 
 # ---------------- TEST CASES ----------------
@@ -35,18 +43,19 @@ if __name__ == "__main__":
     sol = Solution()
 
     test_cases = [
-        # basic example
-        ([1, 0, -1, 0, -2, 2], 0, [[-2, -1, 1, 2], [-2, 0, 0, 2], [-1, 0, 0, 1]]),
-        # all same numbers
-        ([2, 2, 2, 2, 2], 8, [[2, 2, 2, 2]]),
-        # no solution
-        ([1, 2, 3, 4], 100, []),
-        # negative + positive mix
-        ([-3, -1, 0, 2, 4, 5], 2, [[-3, -1, 2, 4]]),
-        # edge case small input
-        ([0, 0, 0, 0], 0, [[0, 0, 0, 0]]),
-        # duplicates heavy
-        ([1, 1, 1, 1, 1, 1], 4, [[1, 1, 1, 1]]),
+        ([1, 0, -1, 0, -2, 2], 0,
+         [[-2,-1,1,2], [-2,0,0,2], [-1,0,0,1]]),
+
+        ([2,2,2,2,2], 8,
+         [[2,2,2,2]]),
+
+        ([1,2,3,4], 100, []),
+
+        ([-3,-1,0,2,4,5], 2,
+         [[-3,-1,2,4]]),
+
+        ([0,0,0,0], 0,
+         [[0,0,0,0]]),
     ]
 
     for nums, target, expected in test_cases:
@@ -56,9 +65,8 @@ if __name__ == "__main__":
         print(f"Output: {result}")
         print(f"Expected: {expected}")
 
-        # compare ignoring order
-        result_sorted = sorted([sorted(x) for x in result])
-        expected_sorted = sorted([sorted(x) for x in expected])
+        res_sorted = sorted([sorted(x) for x in result])
+        exp_sorted = sorted([sorted(x) for x in expected])
 
-        print("PASS" if result_sorted == expected_sorted else "FAIL")
-        print("-" * 60)
+        print("PASS" if res_sorted == exp_sorted else "FAIL")
+        print("-" * 50)
