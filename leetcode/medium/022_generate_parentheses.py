@@ -2,16 +2,15 @@ from typing import List
 
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
-        bfs = [(0, 0, '')]
+        bfs = [(0, 0, "")]
 
         for _ in range(n * 2):
             bfs = (
-                [(l + 1, r, s + '(') for l, r, s in bfs if l < n] +
-                [(l, r + 1, s + ')') for l, r, s in bfs if r < l]
+                [(left + 1, right, s + "(") for left, right, s in bfs if left < n] +
+                [(left, right + 1, s + ")") for left, right, s in bfs if right < left]
             )
 
         return [s for _, _, s in bfs]
-
 
 # ---------------- TEST CASES ----------------
 if __name__ == "__main__":
