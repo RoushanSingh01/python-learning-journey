@@ -1,5 +1,3 @@
-# 060_permutation_sequence.py
-
 import math
 
 
