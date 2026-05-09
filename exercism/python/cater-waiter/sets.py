@@ -42,6 +42,8 @@ def categorize_dish(dish_name, dish_ingredients):
         if len(dish_ingredients.intersection(category)) == ingredient_count:
             return f"{dish_name}: {category_name}"
 
+    return None
+
 
 def tag_special_ingredients(dish):
     """Return dish name and special ingredients."""
