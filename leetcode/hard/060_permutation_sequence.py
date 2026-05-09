@@ -1,14 +1,25 @@
-import itertools
+# 060_permutation_sequence.py
+
+import math
 
 
 class Solution:
     def getPermutation(self, n, k):
-        p = itertools.permutations(range(1, n + 1))
+        nums = [str(i) for i in range(1, n + 1)]
 
-        for _ in range(k):
-            res = next(p)
+        k -= 1
+        result = []
 
-        return "".join([str(i) for i in res])
+        for i in range(n, 0, -1):
+            fact = math.factorial(i - 1)
+
+            index = k // fact
+
+            result.append(nums.pop(index))
+
+            k %= fact
+
+        return "".join(result)
 
 
 def run_test(n, k, expected):
