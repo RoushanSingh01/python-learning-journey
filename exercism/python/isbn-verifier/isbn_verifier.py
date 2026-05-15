@@ -1,9 +1,9 @@
-def is_valid(isbn):
-    pass
 """Utilities for ISBN-10 verification."""
 
 
 def is_valid(isbn: str) -> bool:
+    """Validate an ISBN-10 identifier."""
+
     total = 0
     position = 0
 
