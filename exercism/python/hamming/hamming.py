@@ -1,6 +1,9 @@
+"""Compute the Hamming distance between two DNA strands."""
+
+
 def distance(strand_a, strand_b):
     """
-    Compute the Hamming distance between two DNA strands.
+    Return the number of differing characters between two strands.
 
     Raises:
         ValueError: If strands are not equal in length.
