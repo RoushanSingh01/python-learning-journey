@@ -1,4 +1,3 @@
-from collections import deque
 import string
 
 
@@ -14,28 +13,40 @@ class Solution:
         if endWord not in words:
             return 0
 
-        queue = deque([(beginWord, 1)])
+        begin_set = {beginWord}
+        end_set = {endWord}
 
-        while queue:
-            word, steps = queue.popleft()
+        steps = 1
 
-            if word == endWord:
-                return steps
+        while begin_set and end_set:
+            if len(begin_set) > len(end_set):
+                begin_set, end_set = (
+                    end_set,
+                    begin_set
+                )
 
-            for i in range(len(word)):
-                for char in string.ascii_lowercase:
-                    candidate = (
-                        word[:i]
-                        + char
-                        + word[i + 1:]
-                    )
+            next_set = set()
 
-                    if candidate in words:
-                        words.remove(candidate)
-
-                        queue.append(
-                            (candidate, steps + 1)
+            for word in begin_set:
+                for i in range(len(word)):
+                    for char in string.ascii_lowercase:
+                        candidate = (
+                            word[:i]
+                            + char
+                            + word[i + 1:]
                         )
+
+                        if candidate in end_set:
+                            return steps + 1
+
+                        if candidate in words:
+                            words.remove(candidate)
+
+                            next_set.add(candidate)
+
+            begin_set = next_set
+
+            steps += 1
 
         return 0
 
