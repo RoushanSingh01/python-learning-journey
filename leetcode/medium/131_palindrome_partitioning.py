@@ -1,51 +1,57 @@
+import unittest
 from typing import List
-
 
 class Solution:
     def partition(self, s: str) -> List[List[str]]:
+        n = len(s)
+        if not s:
+            return [[]]
+            
+        dp = [[False] * n for _ in range(n)]
+        
+        for i in range(n):
+            dp[i][i] = True
+            
+        for i in range(n - 1, -1, -1):
+            for j in range(i + 1, n):
+                if s[i] == s[j] and (j - i <= 2 or dp[i + 1][j - 1]):
+                    dp[i][j] = True
+
         result = []
-        path = []
-
-        def is_palindrome(left: int, right: int) -> bool:
-            while left < right:
-                if s[left] != s[right]:
-                    return False
-                left += 1
-                right -= 1
-            return True
-
-        def dfs(start: int) -> None:
-            if start == len(s):
-                result.append(path[:])
+        
+        def backtrack(start_index: int, current_path: List[str]):
+            if start_index == n:
+                result.append(current_path[:])
                 return
 
-            for end in range(start, len(s)):
-                if is_palindrome(start, end):
-                    path.append(s[start:end + 1])
-                    dfs(end + 1)
-                    path.pop()
+            for end_index in range(start_index, n):
+                if dp[start_index][end_index]:
+                    current_path.append(s[start_index:end_index + 1])
+                    backtrack(end_index + 1, current_path)
+                    current_path.pop()
 
-        dfs(0)
+        backtrack(0, [])
         return result
 
 
-def run_tests():
-    solution = Solution()
+class TestPalindromePartitioning(unittest.TestCase):
+    def setUp(self):
+        self.solution = Solution()
 
-    test_cases = [
-        ("aab", [["a", "a", "b"], ["aa", "b"]]),
-        ("a", [["a"]]),
-        ("efe", [["e", "f", "e"], ["efe"]]),
-    ]
+    def test_standard_case(self):
+        s = "aab"
+        expected = [["a", "a", "b"], ["aa", "b"]]
+        self.assertCountEqual(self.solution.partition(s), expected)
 
-    for s, expected in test_cases:
-        result = solution.partition(s)
+    def test_single_character(self):
+        s = "a"
+        expected = [["a"]]
+        self.assertCountEqual(self.solution.partition(s), expected)
 
-        print(f"Input: {s}")
-        print(f"Output: {result}")
-        print(f"Expected: {expected}")
-        print()
+    def test_all_same_characters(self):
+        s = "ccc"
+        expected = [["c", "c", "c"], ["c", "cc"], ["cc", "c"], ["ccc"]]
+        self.assertCountEqual(self.solution.partition(s), expected)
 
-
-if __name__ == "__main__":
-    run_tests()
+if __name__ == '__main__':
+    unittest.main()
