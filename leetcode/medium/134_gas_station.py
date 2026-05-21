@@ -1,17 +1,15 @@
 class Solution:
     def canCompleteCircuit(self, gas, cost):
-        start = 0
-        tank = 0
-        total = 0
+        cur = total = start = 0
 
         for i in range(len(gas)):
-            balance = gas[i] - cost[i]
+            diff = gas[i] - cost[i]
 
-            tank += balance
-            total += balance
+            cur += diff
+            total += diff
 
-            if tank < 0:
-                tank = 0
+            if cur < 0:
+                cur = 0
                 start = i + 1
 
         return start if total >= 0 else -1
@@ -30,10 +28,9 @@ def run_tests():
     for gas, cost, expected in test_cases:
         result = solution.canCompleteCircuit(gas, cost)
 
-        print(f"Gas: {gas}")
-        print(f"Cost: {cost}")
-        print(f"Expected: {expected}")
-        print(f"Output: {result}")
+        print(f"gas={gas}")
+        print(f"cost={cost}")
+        print(f"expected={expected}, output={result}")
         print()
 
 
