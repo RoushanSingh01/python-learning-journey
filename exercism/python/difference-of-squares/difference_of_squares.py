@@ -1,13 +1,17 @@
+"""Functions for calculating the difference between square sums and sum squares."""
+
+
 def square_of_sum(number):
-    return ((number * (number + 1))//2) ** 2
+    """Return the square of the sum of the first natural numbers."""
+    total = number * (number + 1) // 2
+    return total**2
 
 
 def sum_of_squares(number):
-    result = 0
-    for i in range(1, number + 1):
-        result += i**2
-    return result
+    """Return the sum of the squares of the first natural numbers."""
+    return number * (number + 1) * (2 * number + 1) // 6
 
 
 def difference_of_squares(number):
+    """Return the difference between square of sum and sum of squares."""
     return square_of_sum(number) - sum_of_squares(number)
