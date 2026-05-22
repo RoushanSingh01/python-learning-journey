@@ -1,4 +1,4 @@
-from collections import defaultdict
+import collections
 
 
 class Node:
@@ -7,59 +7,48 @@ class Node:
         self.next = next
         self.random = random
 
-    def __repr__(self):
-        random_val = self.random.val if self.random else None
-        return f"Node(val={self.val}, random={random_val})"
-
 
 class Solution:
     def copyRandomList(self, head: "Node") -> "Node":
-        clones = defaultdict(lambda: Node(0))
+        if not head:
+            return None
 
-        clones[None] = None
+        clones = {None: None}
+
         current = head
 
+        # First pass: create clone nodes
         while current:
-            clone = clones[current]
+            clones[current] = Node(current.val)
+            current = current.next
 
-            clone.val = current.val
-            clone.next = clones[current.next]
-            clone.random = clones[current.random]
+        current = head
 
+        # Second pass: connect next and random pointers
+        while current:
+            clones[current].next = clones[current.next]
+            clones[current].random = clones[current.random]
             current = current.next
 
         return clones[head]
+    
 
 
-def print_list(head):
-    current = head
 
-    while current:
-        random_val = current.random.val if current.random else None
-        print(f"Value: {current.val}, Random: {random_val}")
-        current = current.next
+if __name__ == "__main__":
+    n1 = Node(7)
+    n2 = Node(13)
+    n3 = Node(11)
 
+    n1.next = n2
+    n2.next = n3
 
-node1 = Node(7)
-node2 = Node(13)
-node3 = Node(11)
-node4 = Node(10)
-node5 = Node(1)
+    n2.random = n1
+    n3.random = n1
 
-node1.next = node2
-node2.next = node3
-node3.next = node4
-node4.next = node5
+    copied = Solution().copyRandomList(n1)
 
-node2.random = node1
-node3.random = node5
-node4.random = node3
-node5.random = node1
-
-copied = Solution().copyRandomList(node1)
-
-print("Original:")
-print_list(node1)
-
-print("\nCopied:")
-print_list(copied)
+    while copied:
+        random_val = copied.random.val if copied.random else None
+        print(f"Val: {copied.val}, Random: {random_val}")
+        copied = copied.next
