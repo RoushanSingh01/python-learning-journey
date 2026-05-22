@@ -1,6 +1,3 @@
-import collections
-
-
 class Node:
     def __init__(self, x: int, next=None, random=None):
         self.val = int(x)
@@ -13,29 +10,34 @@ class Solution:
         if not head:
             return None
 
-        clones = {None: None}
+        # Maps original node -> copied node
+        old_to_new = {None: None}
 
         current = head
 
-        # First pass: create clone nodes
+        # First pass:
+        # Create all cloned nodes
         while current:
-            clones[current] = Node(current.val)
+            old_to_new[current] = Node(current.val)
             current = current.next
 
         current = head
 
-        # Second pass: connect next and random pointers
+        # Second pass:
+        # Connect next and random pointers
         while current:
-            clones[current].next = clones[current.next]
-            clones[current].random = clones[current.random]
+            copied_node = old_to_new[current]
+
+            copied_node.next = old_to_new[current.next]
+            copied_node.random = old_to_new[current.random]
+
             current = current.next
 
-        return clones[head]
-    
-
+        return old_to_new[head]
 
 
 if __name__ == "__main__":
+    # Create original list
     n1 = Node(7)
     n2 = Node(13)
     n3 = Node(11)
@@ -46,9 +48,18 @@ if __name__ == "__main__":
     n2.random = n1
     n3.random = n1
 
-    copied = Solution().copyRandomList(n1)
+    # Copy list
+    copied_head = Solution().copyRandomList(n1)
 
-    while copied:
-        random_val = copied.random.val if copied.random else None
-        print(f"Val: {copied.val}, Random: {random_val}")
-        copied = copied.next
+    # Print copied list
+    current = copied_head
+
+    while current:
+        random_val = current.random.val if current.random else None
+
+        print(
+            f"Node Value: {current.val}, "
+            f"Random Points To: {random_val}"
+        )
+
+        current = current.next
