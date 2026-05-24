@@ -7,19 +7,22 @@ class ListNode:
 class Solution:
     def insertionSortList(self, head):
         dummy = ListNode(float("-inf"))
+        current = head
+        prev = dummy
 
-        while head:
-            prev = dummy
+        while current:
+            if prev.val > current.val:
+                prev = dummy
 
-            while prev.next and prev.next.val < head.val:
+            while prev.next and prev.next.val < current.val:
                 prev = prev.next
 
-            next_node = head.next
+            next_node = current.next
 
-            head.next = prev.next
-            prev.next = head
+            current.next = prev.next
+            prev.next = current
 
-            head = next_node
+            current = next_node
 
         return dummy.next
 
