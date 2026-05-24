@@ -2,12 +2,13 @@
 
 
 VOWELS = {"a", "e", "i", "o", "u"}
+SPECIAL_CASES = {"xr", "yt"}
 
 
 def translate_single_word(text):
     """Translate a single word into Pig Latin."""
 
-    if text[0] in VOWELS or text[:2] in ("xr", "yt"):
+    if text[0] in VOWELS or text[:2] in SPECIAL_CASES:
         return text + "ay"
 
     if text[1:3] == "qu":
