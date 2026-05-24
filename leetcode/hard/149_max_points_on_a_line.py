@@ -1,43 +1,74 @@
+from math import gcd
+
+
 class Solution:
     def maxPoints(self, points):
-        m, res, roots = {}, 0, set()
+        n = len(points)
 
-        for i, p1 in enumerate(points):
-            if (p1[0], p1[1]) not in roots:
-                roots.add((p1[0], p1[1]))
+        if n <= 2:
+            return n
 
-                m.clear()
+        result = 0
 
-                dup = path = 0
+        for i in range(n):
+            slopes = {}
+            duplicates = 1
 
-                for j, p2 in enumerate(points):
-                    if i != j:
-                        try:
-                            cur = (p1[1] - p2[1]) * 100 / (p1[0] - p2[0])
+            x1, y1 = points[i]
 
-                        except:
-                            if p1[1] == p2[1]:
-                                dup += 1
-                                continue
+            for j in range(i + 1, n):
+                x2, y2 = points[j]
 
-                            cur = "ver"
+                dx = x2 - x1
+                dy = y2 - y1
 
-                        m[cur] = m.get(cur, 0) + 1
+                if dx == 0 and dy == 0:
+                    duplicates += 1
+                    continue
 
-                        if m[cur] > path:
-                            path = m[cur]
+                g = gcd(dx, dy)
 
-                if path + dup + 1 > res:
-                    res = path + dup + 1
+                dx //= g
+                dy //= g
 
-        return res
+                if dx < 0:
+                    dx *= -1
+                    dy *= -1
+
+                elif dx == 0:
+                    dy = 1
+
+                elif dy == 0:
+                    dx = 1
+
+                slope = (dx, dy)
+
+                slopes[slope] = slopes.get(slope, 0) + 1
+
+            current_max = duplicates
+
+            for count in slopes.values():
+                current_max = max(
+                    current_max,
+                    count + duplicates
+                )
+
+            result = max(result, current_max)
+
+        return result
 
 
 if __name__ == "__main__":
     solution = Solution()
 
-    points = [[1, 1], [2, 2], [3, 3]]
+    test_cases = [
+        [[1, 1], [2, 2], [3, 3]],
+        [[1, 1], [3, 2], [5, 3], [4, 1], [2, 3], [1, 4]],
+        [[0, 0], [1, 1], [0, 0]],
+        [[1, 1], [1, 1], [2, 2], [3, 3]],
+    ]
 
-    result = solution.maxPoints(points)
-
-    print(result)
+    for points in test_cases:
+        print(f"Points: {points}")
+        print(f"Max Points on Line: {solution.maxPoints(points)}")
+        print("-" * 40)
