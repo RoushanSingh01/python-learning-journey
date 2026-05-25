@@ -1,3 +1,5 @@
+"""Compare two lists and determine their relationship."""
+
 SUBLIST = 1
 SUPERLIST = 2
 EQUAL = 3
@@ -9,11 +11,10 @@ def is_sublist(small, large):
 
     length = len(small)
 
-    for index in range(len(large) - length + 1):
-        if large[index:index + length] == small:
-            return True
-
-    return False
+    return any(
+        large[index:index + length] == small
+        for index in range(len(large) - length + 1)
+    )
 
 
 def sublist(list_one, list_two):
