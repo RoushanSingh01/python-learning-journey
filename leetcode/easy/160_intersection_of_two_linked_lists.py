@@ -6,17 +6,20 @@ class ListNode:
 
 class Solution:
     def getIntersectionNode(self, headA, headB):
+        if not headA or not headB:
+            return None
+
         pointer_a = headA
         pointer_b = headB
 
-        while pointer_a != pointer_b:
-            pointer_a = pointer_a.next if pointer_a else headB
-            pointer_b = pointer_b.next if pointer_b else headA
+        while pointer_a is not pointer_b:
+            pointer_a = headB if pointer_a is None else pointer_a.next
+            pointer_b = headA if pointer_b is None else pointer_b.next
 
         return pointer_a
 
 
-def build_intersected_lists():
+def create_lists():
     """
     Creates:
 
@@ -25,17 +28,14 @@ def build_intersected_lists():
     B:      5 -> 6 -> 1 /
     """
 
-    # Shared part
     shared = ListNode(8)
     shared.next = ListNode(4)
     shared.next.next = ListNode(5)
 
-    # List A
     head_a = ListNode(4)
     head_a.next = ListNode(1)
     head_a.next.next = shared
 
-    # List B
     head_b = ListNode(5)
     head_b.next = ListNode(6)
     head_b.next.next = ListNode(1)
@@ -45,12 +45,12 @@ def build_intersected_lists():
 
 
 if __name__ == "__main__":
-    list_a, list_b = build_intersected_lists()
+    list_a, list_b = create_lists()
 
     solution = Solution()
-    intersection = solution.getIntersectionNode(list_a, list_b)
+    result = solution.getIntersectionNode(list_a, list_b)
 
-    if intersection:
-        print("Intersection Node Value:", intersection.val)
+    if result:
+        print("Intersection Node:", result.val)
     else:
         print("No intersection found")
