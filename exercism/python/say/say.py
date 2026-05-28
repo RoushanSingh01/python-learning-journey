@@ -1,3 +1,6 @@
+"""Module for converting numbers into spoken English."""
+
+
 ONES = {
     0: "",
     1: "one",
@@ -39,6 +42,7 @@ SCALES = ["", "thousand", "million", "billion"]
 
 
 def say(number):
+    """Convert a number into spoken English."""
 
     if number < 0 or number > 999_999_999_999:
         raise ValueError("input out of range")
@@ -71,6 +75,7 @@ def say(number):
 
 
 def say_under_thousand(number):
+    """Convert a number below one thousand into words."""
 
     parts = []
 
@@ -89,6 +94,7 @@ def say_under_thousand(number):
         ones = remainder % 10
 
         if tens:
+
             tens_word = TENS[tens]
 
             if ones:
