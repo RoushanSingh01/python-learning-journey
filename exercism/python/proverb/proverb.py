@@ -1,4 +1,8 @@
+"""Generate a proverb from a list of inputs."""
+
+
 def proverb(*lst, qualifier=None):
+    """Return the proverb as a list of strings."""
     result = []
 
     for first, second in zip(lst, lst[1:]):
