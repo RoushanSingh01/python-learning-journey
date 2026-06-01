@@ -9,7 +9,7 @@ def modifier(score):
 
 
 class Character:
-    """Represents a D&D character."""
+    """Represent a D&D character."""
 
     def __init__(self):
         abilities = (
@@ -29,4 +29,6 @@ class Character:
     @staticmethod
     def ability():
         """Generate an ability score."""
-        return sum(sorted(randint(1, 6) for _ in range(4))[1:])
+        return sum(
+            sorted(randint(1, 6) for die_roll in range(4))[1:]
+        )
