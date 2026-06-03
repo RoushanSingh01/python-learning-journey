@@ -33,8 +33,8 @@ def tick(matrix):
     columns = len(matrix[0])
 
     next_generation = [
-        [0 for _ in range(columns)]
-        for _ in range(rows)
+        [0] * columns
+        for row_number in range(rows)
     ]
 
     for row in range(rows):
