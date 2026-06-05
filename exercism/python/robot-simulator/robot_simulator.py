@@ -6,10 +6,15 @@ NORTH, SOUTH, EAST, WEST = 0, 180, 90, 270
 class Robot:
     """Simulate a robot moving on a grid."""
 
-    def __init__(self, direction=NORTH, x=0, y=0):
+    def __init__(
+        self,
+        direction=NORTH,
+        horizontal_position=0,
+        vertical_position=0,
+    ):
         """Initialize robot position and direction."""
-        self._x = x
-        self._y = y
+        self._horizontal_position = horizontal_position
+        self._vertical_position = vertical_position
         self.direction = direction
 
         self._instructions = {
@@ -21,7 +26,10 @@ class Robot:
     @property
     def coordinates(self):
         """Return current coordinates."""
-        return (self._x, self._y)
+        return (
+            self._horizontal_position,
+            self._vertical_position,
+        )
 
     def advance(self):
         """Move one step forward."""
@@ -32,10 +40,10 @@ class Robot:
             WEST: (-1, 0),
         }
 
-        delta_x, delta_y = moves[self.direction]
+        horizontal_change, vertical_change = moves[self.direction]
 
-        self._x += delta_x
-        self._y += delta_y
+        self._horizontal_position += horizontal_change
+        self._vertical_position += vertical_change
 
     def turn_left(self):
         """Turn the robot left."""
