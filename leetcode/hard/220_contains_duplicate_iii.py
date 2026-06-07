@@ -1,0 +1,47 @@
+from typing import List
+
+class Solution:
+    def containsNearbyAlmostDuplicate(
+        self,
+        nums: List[int],
+        indexDiff: int,
+        valueDiff: int
+    ) -> bool:
+
+        if valueDiff < 0:
+            return False
+
+        buckets = {}
+        w = valueDiff + 1
+
+        for i, num in enumerate(nums):
+            bucket_id = num // w
+
+            if bucket_id in buckets:
+                return True
+
+            if (
+                bucket_id - 1 in buckets and
+                abs(num - buckets[bucket_id - 1]) <= valueDiff
+            ):
+                return True
+
+            if (
+                bucket_id + 1 in buckets and
+                abs(num - buckets[bucket_id + 1]) <= valueDiff
+            ):
+                return True
+
+            buckets[bucket_id] = num
+
+            if i >= indexDiff:
+                del buckets[nums[i - indexDiff] // w]
+
+        return False
+
+if __name__ == "__main__":
+    sol = Solution()
+
+    print(sol.containsNearbyAlmostDuplicate([1,2,3,1], 3, 0))
+    print(sol.containsNearbyAlmostDuplicate([1,5,9,1,5,9], 2, 3))
+    print(sol.containsNearbyAlmostDuplicate([1,2,1,1], 1, 0))
