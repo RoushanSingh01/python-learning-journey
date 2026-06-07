@@ -1,10 +1,8 @@
 """Simple substitution cipher."""
 
-from string import ascii_lowercase
-
 
 class Cipher:
-    """Encode and decode messages."""
+    """Encode and decode messages using a substitution cipher."""
 
     def __init__(self, key="aaaaaaaaaa"):
         """Store the cipher key."""
@@ -19,14 +17,20 @@ class Cipher:
         return self._transform(text, -1)
 
     def _transform(self, text, direction):
-        """Apply cipher transformation."""
+        """Apply the cipher transformation."""
         result = []
 
         for index, character in enumerate(text):
             text_value = ord(character) - ord("a")
-            key_value = ord(
-                self.key[index % len(self.key)]
-            ) - ord("a")
+
+            key_value = (
+                ord(
+                    self.key[
+                        index % len(self.key)
+                    ]
+                )
+                - ord("a")
+            )
 
             shifted = (
                 text_value
@@ -34,7 +38,10 @@ class Cipher:
             ) % 26
 
             result.append(
-                chr(shifted + ord("a"))
+                chr(
+                    shifted
+                    + ord("a")
+                )
             )
 
         return "".join(result)
