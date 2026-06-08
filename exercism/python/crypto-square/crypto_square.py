@@ -7,13 +7,17 @@ def cipher_text(plain_text):
     """Encode text using the Crypto Square cipher."""
     normalized = "".join(findall(r"[a-z\d]", plain_text.lower()))
 
-    c = int(round(len(normalized) ** 0.5, 0))
-    r = int(round(len(normalized) ** 0.5, 0))
+    columns = int(round(len(normalized) ** 0.5, 0))
+    rows = int(round(len(normalized) ** 0.5, 0))
 
-    if c * r < len(normalized):
-        c += 1
+    if columns * rows < len(normalized):
+        columns += 1
 
-    normalized = normalized.ljust(c * r)
-    rectangle = [normalized[index * c:(index + 1) * c] for index in range(r)]
+    normalized = normalized.ljust(columns * rows)
+
+    rectangle = [
+        normalized[index * columns:(index + 1) * columns]
+        for index in range(rows)
+    ]
 
     return " ".join("".join(row) for row in zip(*rectangle))
