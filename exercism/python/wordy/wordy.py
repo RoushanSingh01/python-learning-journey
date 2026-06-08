@@ -21,40 +21,45 @@ def answer(question):
 
     try:
         result = int(tokens[0])
-    except (IndexError, ValueError):
-        raise ValueError("syntax error")
+    except (IndexError, ValueError) as exc:
+        raise ValueError("syntax error") from exc
 
-    i = 1
+    token_index = 1
 
-    while i < len(tokens):
-        op = tokens[i]
+    while token_index < len(tokens):
+        operator = tokens[token_index]
 
-        if op not in {"plus", "minus", "multiplied_by", "divided_by"}:
+        if operator not in {
+            "plus",
+            "minus",
+            "multiplied_by",
+            "divided_by",
+        }:
             try:
-                int(op)
+                int(operator)
                 raise ValueError("syntax error")
             except ValueError as error:
                 if "syntax error" in str(error):
                     raise
-                raise ValueError("unknown operation")
+                raise ValueError("unknown operation") from error
 
-        if i + 1 >= len(tokens):
+        if token_index + 1 >= len(tokens):
             raise ValueError("syntax error")
 
         try:
-            value = int(tokens[i + 1])
-        except ValueError:
-            raise ValueError("syntax error")
+            value = int(tokens[token_index + 1])
+        except ValueError as exc:
+            raise ValueError("syntax error") from exc
 
-        if op == "plus":
+        if operator == "plus":
             result += value
-        elif op == "minus":
+        elif operator == "minus":
             result -= value
-        elif op == "multiplied_by":
+        elif operator == "multiplied_by":
             result *= value
-        elif op == "divided_by":
+        elif operator == "divided_by":
             result //= value
 
-        i += 2
+        token_index += 2
 
     return result
