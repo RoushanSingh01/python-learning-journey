@@ -23,6 +23,9 @@ class Clock:
             return NotImplemented
         return (self.hour, self.minute) == (other.hour, other.minute)
 
+    def __hash__(self):
+        return hash((self.hour, self.minute))
+
     def __add__(self, minutes):
         return Clock(self.hour, self.minute + minutes)
 
