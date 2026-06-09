@@ -14,6 +14,9 @@ class Node:
     def next(self):
         return self._next
 
+    def set_next(self, node):
+        self._next = node
+
 
 class LinkedList:
     """Singly linked list."""
@@ -43,7 +46,7 @@ class LinkedList:
 
     def push(self, value):
         new_node = Node(value)
-        new_node._next = self._head
+        new_node.set_next(self._head)
         self._head = new_node
 
     def pop(self):
