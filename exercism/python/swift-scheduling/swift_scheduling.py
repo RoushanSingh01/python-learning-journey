@@ -1,7 +1,12 @@
 """Calculate Swift delivery dates."""
 
-from calendar import FRIDAY, SATURDAY, SUNDAY, WEDNESDAY, monthrange
+from calendar import monthrange
 from datetime import datetime, timedelta
+
+WEDNESDAY = 2
+FRIDAY = 4
+SATURDAY = 5
+SUNDAY = 6
 
 
 def at_hour(date_time, hour):
