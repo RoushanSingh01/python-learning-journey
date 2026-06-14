@@ -1,6 +1,6 @@
 # Python Learning Journey
 
-My Python learning journey — documenting problem solving, CS fundamentals, algorithmic thinking, and practical coding practice as part of my long-term AI Engineering roadmap.
+My Python learning journey — documenting problem solving, computer science fundamentals, algorithmic thinking, and practical coding practice as part of my long-term AI Engineering roadmap.
 
 This repository contains:
 
@@ -16,9 +16,28 @@ This repository contains:
 
 | Platform | Progress                                          | Status      |
 | -------- | ------------------------------------------------- | ----------- |
-| LeetCode | **207 Problems** (52 Easy / 120 Medium / 35 Hard) | Active      |
-| Exercism | **78 Python Exercises**                           | Active      |
+| LeetCode | **259 Problems** (68 Easy / 146 Medium / 45 Hard) | Active      |
+| Exercism | **111 Python Exercises**                          | Active      |
 | CS50P    | Problem Sets 0–2 completed                        | In Progress |
+
+LeetCode Profile Highlights:
+
+* 259 problems solved
+* 96.9% acceptance rate
+* Beats 95.8% of users
+* 667 total submissions
+
+---
+
+# Current Achievements
+
+* 259 LeetCode problems solved
+* 146 Medium problems solved
+* 45 Hard problems solved
+* 111 Exercism Python exercises completed
+* 96.9% LeetCode acceptance rate
+* Exposure to dozens of common algorithmic patterns
+* Consistent daily problem-solving practice
 
 ---
 
@@ -58,12 +77,12 @@ Based on solved problem history.
 
 | Topic                 | Solved |
 | --------------------- | ------ |
-| Dynamic Programming   | 38     |
-| Backtracking          | 20     |
-| Divide and Conquer    | 11     |
-| Trie                  | 6      |
-| Heap / Priority Queue | 13     |
-| Graph Theory          | 11     |
+| Dynamic Programming   | 45     |
+| Backtracking          | 23     |
+| Divide and Conquer    | 14     |
+| Heap / Priority Queue | 16     |
+| Trie                  | 8      |
+| Graph Theory          | 14     |
 
 ---
 
@@ -71,14 +90,14 @@ Based on solved problem history.
 
 | Topic          | Solved |
 | -------------- | ------ |
-| Hash Table     | 36     |
-| Tree           | 28     |
-| Binary Tree    | 28     |
-| Binary Search  | 18     |
-| Stack          | 19     |
-| Sliding Window | 12     |
-| Greedy         | 14     |
-| BFS / DFS      | 21     |
+| Hash Table     | 42     |
+| Tree           | 37     |
+| Binary Tree    | 37     |
+| Binary Search  | 23     |
+| Stack          | 24     |
+| Sliding Window | 16     |
+| Greedy         | 20     |
+| BFS / DFS      | 29     |
 
 ---
 
@@ -86,12 +105,12 @@ Based on solved problem history.
 
 | Topic        | Solved |
 | ------------ | ------ |
-| Array        | 91     |
-| String       | 51     |
-| Two Pointers | 31     |
-| Sorting      | 17     |
-| Prefix Sum   | 10     |
-| Simulation   | 11     |
+| Array        | 114    |
+| String       | 61     |
+| Two Pointers | 34     |
+| Sorting      | 22     |
+| Prefix Sum   | 13     |
+| Simulation   | 16     |
 
 ---
 
@@ -131,9 +150,10 @@ Using Exercism primarily for:
 
 Current Progress:
 
-* 78 completed Python exercises
+* 111 completed Python exercises
 * Consistent focus on refactoring and readability
 * Learning Python best practices through mentor feedback and code reviews
+* Practicing maintainable and production-quality Python code
 
 ---
 
@@ -147,7 +167,11 @@ Current Progress:
 | Jun 2026 | Reached 200+ LeetCode problems solved                   |
 | Jun 2026 | Crossed 120 Medium LeetCode problems                    |
 | Jun 2026 | Completed 78 Exercism Python exercises                  |
-| —        | Next milestone pending                                  |
+| Jun 2026 | Reached 250+ LeetCode problems solved                   |
+| Jun 2026 | Crossed 140 Medium LeetCode problems                    |
+| Jun 2026 | Reached 45 Hard LeetCode problems                       |
+| Jun 2026 | Completed 111 Exercism Python exercises                 |
+| —        | Next milestone: 300 LeetCode problems                   |
 
 ---
 
@@ -155,16 +179,22 @@ Current Progress:
 
 Recent additions include:
 
-* Number of Islands
-* House Robber
-* Binary Tree Right Side View
-* Bitwise AND of Numbers Range
-* Earliest Finish Time for Land and Water Rides I
-* Earliest Finish Time for Land and Water Rides II
-* Count Primes
-* Happy Number
-* Remove Linked List Elements
-* Isomorphic Strings
+* Different Ways to Add Parentheses
+* Maximum Twin Sum of a Linked List
+* Binary Tree Paths
+* Add Digits
+* Single Number III
+* Ugly Number
+* Valid Anagram
+* Weighted Word Mapping
+* Search a 2D Matrix II
+* Sliding Window Maximum
+* Product of Array Except Self
+* Delete Node in a Linked List
+* Lowest Common Ancestor of a Binary Tree
+* Lowest Common Ancestor of a Binary Search Tree
+* Palindrome Linked List
+* Number of Digit One
 
 ---
 
