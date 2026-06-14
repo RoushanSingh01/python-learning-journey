@@ -49,10 +49,11 @@ def verse(number: int) -> list[str]:
     lines.extend(
         [
             (
-                f"She swallowed the {ANIMALS[n + 1].name} "
-                f"to catch the {ANIMALS[n].name}{ANIMALS[n].suffix}."
+                f"She swallowed the {ANIMALS[animal_index + 1].name} "
+                f"to catch the {ANIMALS[animal_index].name}"
+                f"{ANIMALS[animal_index].suffix}."
             )
-            for n in range(number - 2, -1, -1)
+            for animal_index in range(number - 2, -1, -1)
         ]
     )
 
@@ -63,7 +64,10 @@ def verse(number: int) -> list[str]:
 def recite(start_verse: int, end_verse: int) -> list[str]:
     """Return the requested range of verses."""
 
-    lines = [verse(number) + [""] for number in range(start_verse, end_verse + 1)]
+    lines = [
+        verse(verse_number) + [""]
+        for verse_number in range(start_verse, end_verse + 1)
+    ]
     lines = list(chain.from_iterable(lines))
     lines.pop()
     return lines
