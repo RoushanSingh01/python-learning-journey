@@ -1,3 +1,5 @@
+"""Exercism solution for 'scale-generator'."""
+
 from typing import Optional
 
 
