@@ -11,16 +11,19 @@ def parse(markdown: str) -> str:
     in_list = False
 
     for line in lines:
-        if in_list and not re.match(r"\* ", line):
+        processed_line = line
+
+        if in_list and not re.match(r"\* ", processed_line):
             result += "</ul>"
             in_list = False
 
-        line = check_header(line)
-        line, in_list = check_list(line, in_list)
-        line = check_bold(line)
-        line = check_italic(line)
-        line = check_paragraph(line)
-        result += line
+        processed_line = check_header(processed_line)
+        processed_line, in_list = check_list(processed_line, in_list)
+        processed_line = check_bold(processed_line)
+        processed_line = check_italic(processed_line)
+        processed_line = check_paragraph(processed_line)
+
+        result += processed_line
 
     if in_list:
         result += "</ul>"
