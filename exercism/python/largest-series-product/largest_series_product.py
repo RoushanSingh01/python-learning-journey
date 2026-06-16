@@ -1,6 +1,6 @@
 """Exercism solution for 'largest-series-product'."""
 
-from functools import reduce
+from math import prod
 
 
 def largest_product(digits: str, span: int) -> int:
@@ -20,7 +20,7 @@ def largest_product(digits: str, span: int) -> int:
 
     def product(series: str) -> int:
         """Return the product of all digits in a series."""
-        return reduce(lambda left, right: left * right, map(int, series))
+        return prod(int(digit) for digit in series)
 
     return max(
         product(digits[index:index + span])
