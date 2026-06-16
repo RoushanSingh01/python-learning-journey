@@ -36,5 +36,5 @@ def meetup(year, month, which, week_day):
         delta = (wanted_wday - start_day_wday) % 7
         return date(year, month, start_day + delta)
 
-    except ValueError:
-        raise MeetupDayException("That day does not exist.")
+    except ValueError as exc:
+        raise MeetupDayException("That day does not exist.") from exc
